@@ -1,4 +1,12 @@
 # playgta5 Source Code
+
+## Cloudflare Pages
+
+This fork includes a Pages build and Worker. Use build command `npm run build`
+and output directory `dist`. See [CLOUDFLARE.md](CLOUDFLARE.md) for setup.
+The engine and game assets are absent from this repository; the game cannot
+run until a matching R2 bucket or HTTPS asset source is configured.
+
 This code is grabbed from playgta5.com before it got took down. You can run this locally or make it public hehe.
 This github page serves as archival for the original V1 port of the game,
 
