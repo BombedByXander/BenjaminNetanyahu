@@ -32,5 +32,7 @@ try {
 `);
 await writeFile(new URL('index.html', output), html);
 await copyFile(new URL('cloudflare/worker.mjs', root), new URL('_worker.js', output));
+// Pages consumes _worker.js; Workers must not publish it as a static download.
+await writeFile(new URL('.assetsignore', output), '_worker.js\n.assetsignore\n');
 await writeFile(new URL('404.html', output), '<!doctype html><title>Not found</title><h1>Not found</h1>');
 console.log('Built dist/ for Cloudflare Pages. Game assets require GAME_ASSETS (R2) or ASSET_ORIGIN.');

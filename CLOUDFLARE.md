@@ -25,6 +25,23 @@ unavailable message instead of hanging on the loading screen.
 
 ## Supply assets using one of these options
 
+### If you created a Workers project instead
+
+The command `npx wrangler deploy` deploys to Workers, not Pages. This repository
+also includes `wrangler.jsonc` for that workflow: use `npm run build` as the
+build command and `npx wrangler deploy` as the deploy command. It runs the same
+server with an `ASSETS` binding and applies isolation headers to every response.
+Workers uses a `workers.dev` address. For a `pages.dev` address, create a Pages
+project using the settings above; Git-integrated Pages needs no deploy command.
+
+For Workers, configure an R2 binding in `wrangler.jsonc` using
+`"r2_buckets": [{ "binding": "GAME_ASSETS", "bucket_name": "YOUR_BUCKET" }]`,
+or add `"vars": { "ASSET_ORIGIN": "https://YOUR_ASSET_HOST" }` at the top level.
+Use actual existing resources, then redeploy. The following dashboard binding
+instructions apply to Pages.
+
+### Asset storage
+
 **R2:** Upload the contents of the matching `mirror/playgta5.com/` folder into an
 R2 bucket, preserving object paths. In Pages settings, add an R2 binding named
 `GAME_ASSETS` pointing to that bucket. Redeploy after adding the binding.
